@@ -75,6 +75,11 @@ Where correctIndex is the 0-based index of the correct answer.`;
         });
         const text = response.text;
 
+        if (!text) {
+            console.error('[Gemini] Empty response from API');
+            return null;
+        }
+
         // Parse JSON (handle markdown code blocks)
         let jsonStr = text.trim();
         if (jsonStr.startsWith('```')) {
@@ -256,10 +261,14 @@ Respond with ONLY the feedback message, no quotes, no extra text.`;
             model: GEMINI_MODEL,
             contents: prompt,
         });
-        const text = response.text.trim();
+        const text = response.text;
+        
+        if (!text) {
+            throw new Error('Empty response from Gemini');
+        }
 
         // Remove quotes if Gemini added them
-        return text.replace(/^"|"$/g, '').replace(/^'|'$/g, '');
+        return text.trim().replace(/^"|"/g, '').replace(/^'|'$/g, '');
     } catch (error) {
         console.error('[Gemini] Feedback generation failed:', error);
         // Fallback messages
@@ -300,6 +309,11 @@ Respond with ONLY the explanation, no preamble.`;
             model: GEMINI_MODEL,
             contents: prompt,
         });
+        
+        if (!response.text) {
+            return null;
+        }
+        
         return response.text.trim();
     } catch (error) {
         console.error('[Gemini] Explanation generation failed:', error);
