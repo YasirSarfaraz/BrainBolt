@@ -21,7 +21,7 @@ Replace the current key in `.env`:
 
 ```bash
 # OLD (invalid)
-GEMINI_API_KEY="AIzaSyCuTDx_KZGBzqY72Urzf51UBpnOojxWpxw"
+GEMINI_API_KEY=""
 
 # NEW (from Google AI Studio)
 GEMINI_API_KEY="AIzaSy..."  # Your new key here
