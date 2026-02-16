@@ -9,6 +9,18 @@ An AI-powered adaptive quiz platform that generates questions dynamically using 
 ![Redis](https://img.shields.io/badge/Redis-7-red?logo=redis)
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue?logo=docker)
 
+### Demo Photos:
+
+![1771283058401](image/README/1771283058401.png)
+
+![1771282757701](image/README/1771282757701.png)
+
+![1771282896710](image/README/1771282896710.png)
+![1771283003587](image/README/1771283003587.png)
+
+![1771283026675](image/README/1771283026675.png)
+
+
 ---
 
 ## 🚀 Setup Instructions (After Cloning)
