@@ -1,0 +1,46 @@
+{
+    "name": "brainbolt",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+        "db:generate": "prisma generate",
+        "db:migrate": "prisma migrate deploy",
+        "db:push": "prisma db push",
+        "db:seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+        "pool:refill": "tsx scripts/question-pool.ts refill",
+        "pool:stats": "tsx scripts/question-pool.ts stats",
+        "postinstall": "prisma generate"
+    },
+    "dependencies": {
+        "@google/genai": "^1.41.0",
+        "@google/generative-ai": "^0.24.1",
+        "@prisma/client": "^5.22.0",
+        "ioredis": "^5.4.1",
+        "next": "14.2.18",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "uuid": "^10.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^22.10.0",
+        "@types/react": "^18.3.12",
+        "@types/react-dom": "^18.3.1",
+        "@types/uuid": "^10.0.0",
+        "eslint": "^8.57.0",
+        "eslint-config-next": "14.2.18",
+        "postcss": "^8.4.48",
+        "prettier": "^3.4.1",
+        "prisma": "^5.22.0",
+        "ts-node": "^10.9.2",
+        "tsx": "^4.21.0",
+        "typescript": "^5.7.2"
+    },
+    "prisma": {
+        "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+    }
+}

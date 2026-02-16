@@ -1,0 +1,76 @@
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xxs);
+    padding: var(--space-xxs) var(--space-sm);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    line-height: 1.3;
+}
+
+.default {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+.primary {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.success {
+    background: var(--color-success-light);
+    color: var(--color-success);
+}
+
+.error {
+    background: var(--color-error-light);
+    color: var(--color-error);
+}
+
+.warning {
+    background: var(--color-warning-light);
+    color: #b87900;
+}
+
+.info {
+    background: var(--color-info-light);
+    color: #2980b9;
+}
+
+.accent {
+    background: var(--color-accent-light);
+    color: var(--color-accent);
+}
+
+/* Sizes */
+.lg {
+    padding: var(--space-xs) var(--space-md);
+    font-size: var(--font-size-sm);
+}
+
+/* Pulse animation for live indicators */
+.pulse::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1.5);
+    }
+}

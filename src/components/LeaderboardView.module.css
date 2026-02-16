@@ -1,0 +1,276 @@
+.leaderboardContainer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-lg);
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-extrabold);
+    background: var(--bg-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-xs);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: var(--font-size-md);
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: var(--space-xs);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xxs);
+    margin-bottom: var(--space-xl);
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tab {
+    flex: 1;
+    padding: var(--space-sm) var(--space-md);
+    text-align: center;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.tab:hover {
+    color: var(--text-primary);
+}
+
+.tabActive {
+    background: var(--bg-card);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+/* User Rank Banner */
+.userRank {
+    background: var(--bg-card);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-glow);
+    animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.userRankLabel {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.userRankInfo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.userRankPosition {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--color-primary);
+}
+
+.userRankValue {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+}
+
+/* Table */
+.table {
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.tableHeader {
+    display: grid;
+    grid-template-columns: 60px 1fr 120px;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--bg-tertiary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tableRow {
+    display: grid;
+    grid-template-columns: 60px 1fr 120px;
+    padding: var(--space-md) var(--space-lg);
+    border-top: 1px solid var(--border-secondary);
+    align-items: center;
+    transition: background var(--transition-fast);
+    animation: slideIn 0.3s ease-out;
+    animation-fill-mode: both;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.tableRow:hover {
+    background: var(--bg-secondary);
+}
+
+.tableRowHighlight {
+    background: var(--color-primary-light);
+    border-left: 3px solid var(--color-primary);
+}
+
+.rank {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+}
+
+.medalRank {
+    font-size: var(--font-size-xl);
+}
+
+.userCell {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: var(--bg-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.userName {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+}
+
+.valueCell {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+    text-align: right;
+}
+
+.empty {
+    text-align: center;
+    padding: var(--space-xxl);
+    color: var(--text-tertiary);
+}
+
+.refreshBtn {
+    text-align: center;
+    margin-top: var(--space-lg);
+}
+
+.liveIndicator {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--font-size-xs);
+    color: var(--color-success);
+    margin-bottom: var(--space-md);
+}
+
+.liveDot {
+    width: 8px;
+    height: 8px;
+    background: var(--color-success);
+    border-radius: 50%;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1.5);
+    }
+}
+
+@media (max-width: 768px) {
+    .leaderboardContainer {
+        padding: var(--space-md);
+        padding-bottom: 80px;
+    }
+
+    .tableHeader,
+    .tableRow {
+        grid-template-columns: 50px 1fr 80px;
+        padding: var(--space-sm) var(--space-md);
+    }
+
+    .userRank {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-sm);
+    }
+}

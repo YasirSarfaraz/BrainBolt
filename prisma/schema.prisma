@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  createdAt DateTime @default(now()) @map("created_at")
+
+  state        UserState?
+  answerLogs   AnswerLog[]
+  leaderScore  LeaderboardScore?
+  leaderStreak LeaderboardStreak?
+
+  @@map("users")
+}
+
+model Question {
+  id               String @id @default(uuid())
+  difficulty       Int
+  prompt           String
+  choices          String[] // Array of choices
+  correctIndex     Int      @map("correct_index")
+  category         String   @default("general")
+  isAiGenerated    Boolean  @default(false) @map("is_ai_generated")
+  
+  answerLogs AnswerLog[]
+
+  @@index([difficulty])
+  @@index([difficulty, isAiGenerated])
+  @@map("questions")
+}
+
+model UserState {
+  userId            String   @id @map("user_id")
+  currentDifficulty Int      @default(1) @map("current_difficulty")
+  streak            Int      @default(0)
+  maxStreak         Int      @default(0) @map("max_streak")
+  totalScore        Int      @default(0) @map("total_score")
+  totalAnswered     Int      @default(0) @map("total_answered")
+  totalCorrect      Int      @default(0) @map("total_correct")
+  momentum          Float    @default(0.0)
+  recentAnswers     Boolean[] @default([]) @map("recent_answers") // Rolling window of last 10
+  lastQuestionId    String?  @map("last_question_id")
+  lastAnswerAt      DateTime? @map("last_answer_at")
+  stateVersion      Int      @default(1) @map("state_version")
+  sessionId         String?  @map("session_id")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([lastAnswerAt])
+  @@map("user_state")
+}
+
+model AnswerLog {
+  id              String   @id @default(uuid())
+  userId          String   @map("user_id")
+  questionId      String   @map("question_id")
+  difficulty      Int
+  answer          Int
+  correct         Boolean
+  scoreDelta      Int      @map("score_delta")
+  streakAtAnswer  Int      @map("streak_at_answer")
+  idempotencyKey  String   @unique @map("idempotency_key")
+  answeredAt      DateTime @default(now()) @map("answered_at")
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id])
+
+  @@index([userId, answeredAt])
+  @@index([idempotencyKey])
+  @@map("answer_log")
+}
+
+model LeaderboardScore {
+  userId     String   @id @map("user_id")
+  totalScore Int      @default(0) @map("total_score")
+  username   String   @default("")
+  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([totalScore(sort: Desc)])
+  @@map("leaderboard_score")
+}
+
+model LeaderboardStreak {
+  userId    String   @id @map("user_id")
+  maxStreak Int      @default(0) @map("max_streak")
+  username  String   @default("")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([maxStreak(sort: Desc)])
+  @@map("leaderboard_streak")
+}
+
+model AppConfig {
+  key       String   @id
+  value     Json
+  category  String   @default("general")
+  label     String   @default("")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@index([category])
+  @@map("app_config")
+}
