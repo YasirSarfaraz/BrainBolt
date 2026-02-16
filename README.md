@@ -44,6 +44,15 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 GEMINI_API_KEY="your-gemini-api-key-here"  # ← Replace this
 ```
 
+## 🐳Docker Quick Start
+
+```bash
+# Set your Gemini API key in .env first
+docker-compose up --build
+```
+
+This starts PostgreSQL, Redis, and the Next.js app automatically, including database migrations and seed data.
+
 ### Step 3: Start Docker Containers
 
 ```bash
